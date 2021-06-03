@@ -6,11 +6,17 @@ import ContactList from "../../components/ContactList";
 import Filter from "../../components/Filter";
 import Loader from "react-loader-spinner";
 import { getIsLoading } from "../../redux/contacts/contacts-selectors";
+import PropTypes from "prop-types";
 
 class Contacts extends Component {
   componentDidMount() {
     this.props.getContacts();
   }
+
+  static propTypes = {
+    getContacts: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+  };
 
   render() {
     const { isLoading } = this.props;

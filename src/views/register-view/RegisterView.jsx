@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { register } from "../../redux/auth/auth-operations";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -126,6 +127,10 @@ const RegisterView = ({ onSubmit }) => {
       </div>
     </Container>
   );
+};
+
+RegisterView.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {

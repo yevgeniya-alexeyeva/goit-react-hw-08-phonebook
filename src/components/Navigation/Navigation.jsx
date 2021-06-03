@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import { connect } from "react-redux";
 import { isAuthenticated } from "../../redux/auth/auth-selectors";
+import PropTypes from "prop-types";
 
 const Navigation = ({ isAuthenticated }) => {
   return (
@@ -27,6 +28,10 @@ const Navigation = ({ isAuthenticated }) => {
       )}
     </nav>
   );
+};
+
+Navigation.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const MSTP = (state) => ({

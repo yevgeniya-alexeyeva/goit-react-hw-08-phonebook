@@ -1,6 +1,7 @@
 import { email } from "../../redux/auth/auth-selectors";
 import { connect } from "react-redux";
 import { logout } from "../../redux/auth/auth-operations";
+import PropTypes from "prop-types";
 
 const UserMenu = ({ userEmail, onLogout }) => {
   return (
@@ -11,6 +12,11 @@ const UserMenu = ({ userEmail, onLogout }) => {
       </button>
     </div>
   );
+};
+
+UserMenu.propTypes = {
+  userEmail: PropTypes.string.isRequired,
+  onLogout: PropTypes.func.isRequired,
 };
 
 const MSTP = (state) => ({
