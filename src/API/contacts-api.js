@@ -41,11 +41,29 @@ export const fetchCurrentUser = () => {
   });
 };
 
+// For next Home Work
+
 // export const createUser = createAsyncThunk(
-//   "contacts/register",
+//   "auth/register",
 //   async (credentials) => {
-//     return axios.post("/users/signup", credentials).then(({ data }) => {
-//       return data;
-//     });
+//     const { data } = await axios.post("/users/signup", credentials);
+//     return data;
+//   }
+// );
+
+// export const loginUser = createAsyncThunk("auth/login", async (credentials) => {
+//   const { data } = await axios.post("/users/login", credentials);
+//   return data;
+// });
+
+// export const logoutUser = createAsyncThunk("auth/logout", async () => {
+//   await axios.post("/users/logout");
+// });
+
+// export const fetchCurrentUser = createAsyncThunk(
+//   "auth/getCurrentUser",
+//   async () => {
+//     const { data } = await axios.get("/users/current");
+//     return data;
 //   }
 // );

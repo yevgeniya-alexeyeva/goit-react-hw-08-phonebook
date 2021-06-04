@@ -1,22 +1,23 @@
 import { connect } from "react-redux";
 import { removeContact } from "../../redux/contacts/contacts-operations";
 import PropTypes from "prop-types";
-import { button, contactItem } from "./Contact.module.css";
+import { contactItem, contactItemName } from "./Contact.module.css";
+import Button from "@material-ui/core/Button";
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 const Contact = (props) => {
   const { item, onDelete } = props;
   return (
     <li className={contactItem}>
-      <span>
+      <span className={contactItemName}>
         {item.name}: {item.number}
       </span>
-      <button
-        className={button}
-        type="button"
-        onClick={() => onDelete(item.id)}
-      >
-        Delete
-      </button>
+      <Button
+            type="button"
+            onClick={() => onDelete(item.id)}
+            variant="contained"
+            color="secondary"
+          ><DeleteOutlineIcon/>Delete</Button>
     </li>
   );
 };

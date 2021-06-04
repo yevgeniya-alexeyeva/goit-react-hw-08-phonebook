@@ -50,7 +50,12 @@ const RegisterView = ({ onSubmit }) => {
       password: password,
     };
     onSubmit(userData);
+
+    
+
     e.currentTarget.reset();
+   
+
   };
 
   const classes = useStyles();
@@ -132,6 +137,7 @@ const RegisterView = ({ onSubmit }) => {
 RegisterView.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+
 
 const mapDispatchToProps = {
   onSubmit: register,

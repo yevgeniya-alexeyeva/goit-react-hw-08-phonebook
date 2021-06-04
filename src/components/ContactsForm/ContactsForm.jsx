@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { addContact } from "../../redux/contacts/contacts-operations";
-import { form, label, input, button } from "./Form.module.css";
+import { form, label, input} from "./ContactsForm.module.css";
 import { getAllContacts } from "../../redux/contacts/contacts-selectors";
+import Button from "@material-ui/core/Button";
+
 
 class Form extends Component {
   state = {
@@ -60,10 +62,14 @@ class Form extends Component {
             required
           />
         </label>
-
-        <button className={button} type="submit">
+        <Button
+            type="submit"
+            variant="contained"
+            color="secondary"
+          >Add contact</Button>
+        {/* <button className={button} type="submit">
           Add contact
-        </button>
+        </button> */}
       </form>
     );
   }

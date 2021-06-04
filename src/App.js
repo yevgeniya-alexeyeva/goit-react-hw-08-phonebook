@@ -2,13 +2,14 @@ import "./App.css";
 import { Route, Switch } from "react-router-dom";
 import { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
-import AppBar from "./components/AppBar";
+import routs from "./router";
 import PropTypes from "prop-types";
-import PrivateRoute from "./components/PrivateRoute";
-import PublicRoute from "./components/PublicRoute";
 import Loader from "react-loader-spinner";
 import { getCurrentUser } from "./redux/auth/auth-operations";
 import { getIsLoading } from "./redux/auth/auth-selectors";
+import AppBar from "./components/AppBar";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 const HomeView = lazy(() =>
   import(/* webpackChunkName: "HomeView" */ "./views/home-view")
@@ -22,6 +23,14 @@ const LoginView = lazy(() =>
 const Contacts = lazy(() =>
   import(/* webpackChunkName: "Contacts" */ "./views/contacts-view")
 );
+
+const loaderProps = {
+  type: "ThreeDots",
+ color: "#fc4445",
+              height: 100,
+              width: 100,
+              timeout: 2000,
+}
 
 class App extends Component {
   componentDidMount() {
@@ -38,6 +47,7 @@ class App extends Component {
     return (
       <div className="App">
         <AppBar />
+        <div className="contentWrapper">
         <Suspense
           fallback={
             <Loader
@@ -52,46 +62,35 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={HomeView} />
             {isLoading ? (
-              <Loader
-                type="ThreeDots"
-                color="#fc4445"
-                height={100}
-                width={100}
-                timeout={3000}
-              />
+              <Loader {...loaderProps}/>
             ) : (
               <PublicRoute
-                path="/register"
+                path={routs.RegisterView}
                 restricted
-                redirectTo="/"
+                redirectTo={routs.ContactsView}
                 exact
                 component={RegisterView}
               />
             )}
             {isLoading ? (
-              <Loader
-                type="ThreeDots"
-                color="#fc4445"
-                height={100}
-                width={100}
-                timeout={3000}
-              />
+              <Loader {...loaderProps}/>
             ) : (
               <PublicRoute
-                path="/login"
+                path={routs.LoginView}
                 restricted
-                redirectTo="/"
+                redirectTo={routs.ContactsView}
                 component={LoginView}
               />
             )}
             <PrivateRoute
-              path="/contacts"
-              redirectTo="/login"
+              path={routs.ContactsView}
+              redirectTo={routs.LoginView}
               exact
               component={Contacts}
             />
           </Switch>
         </Suspense>
+        </div>
       </div>
     );
   }
